@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://clandinq.github.io/sitemap.xml

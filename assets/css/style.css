@@ -270,14 +270,6 @@ a:hover {
 
 .intro-text p {
   margin: 0 0 0.9rem;
-  /* Justified bio; hyphenation (uses <html lang="en">) keeps word spacing even */
-  text-align: justify;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-}
-
-.intro-text .affiliation {
-  text-align: left;
 }
 
 .affiliation {

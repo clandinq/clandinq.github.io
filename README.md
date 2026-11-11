@@ -75,4 +75,11 @@ Commit and push to `main`. GitHub Pages serves from the root of the `main` branc
 
 **Cache busting:** GitHub Pages lets browsers cache CSS/JS for 10 minutes. Whenever you change
 `assets/css/style.css` or `assets/js/main.js`, bump the `?v=N` suffix on their `<link>`/`<script>` tags
-in all four HTML files (e.g. `sed -i '' 's/?v=6"/?v=7"/g' *.html`), otherwise visitors may see new HTML with old styles.
+in all four HTML files (e.g. `sed -i '' 's/?v=7"/?v=8"/g' *.html`), otherwise visitors may see new HTML with old styles.
+
+## Link previews
+
+Every page has Open Graph / Twitter tags pointing at `assets/img/og-card.png` (1200x630: photo, name, title).
+Its source is `documentation/og_card_source.html`; the regeneration command is in that file's header comment.
+After regenerating, bump `og-card.png?v=N` in the four HTML files so LinkedIn/Slack refetch it
+(LinkedIn also caches previews; use https://www.linkedin.com/post-inspector/ to force a refresh).
