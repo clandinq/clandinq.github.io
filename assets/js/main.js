@@ -41,20 +41,20 @@
   });
 
   /* (c) Thumbnail effect --------------------------------------------------
-     ?thumb=zoom|grayscale overrides the body default and is carried across
+     ?thumb=grayscale|zoom|accent overrides the body default and is carried across
      the internal nav links so the choice persists between tabs. */
   var thumb = null;
   try {
     thumb = new URLSearchParams(window.location.search).get('thumb');
   } catch (e) { /* ignore malformed query */ }
 
-  if (thumb === 'zoom' || thumb === 'grayscale') {
+  if (thumb === 'zoom' || thumb === 'grayscale' || thumb === 'accent') {
     if (document.body) document.body.dataset.thumbEffect = thumb;
 
     var links = document.querySelectorAll('.tabs a, .site-name');
     Array.prototype.forEach.call(links, function (a) {
       var href = a.getAttribute('href');
-      // Only relative, internal links (index.html, data.html, cv.html)
+      // Only relative, internal links (index.html, research.html, data.html, cv.html)
       if (!href || /^[a-z][a-z0-9+.-]*:/i.test(href) || href.charAt(0) === '#' ||
           href.indexOf('//') === 0) return;
       var hash = '';

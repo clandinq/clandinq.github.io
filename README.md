@@ -5,14 +5,15 @@ The static site behind https://clandinq.github.io/. Plain HTML, CSS and JavaScri
 ## File layout
 
 ```
-index.html              Research page: intro/bio + paper cards
+index.html              Home: intro/bio + current-research paper cards
+research.html           Research page: working papers + other work
 data.html               Data page: dataset cards
 cv.html                 CV page: embedded PDF + download button
 assets/css/style.css    All styling (light/dark themes via CSS variables)
 assets/js/main.js       Theme toggle, abstract toggles, thumbnail-effect switch
 assets/img/             headshot.jpg, favicon.svg
-assets/img/papers/      Square thumbnails for papers
-assets/img/data/        Square thumbnails for datasets
+assets/img/papers/      Square thumbnails for papers (transparent-background SVGs)
+assets/img/data/        Square thumbnails for datasets (transparent-background SVGs)
 assets/cv/              cesarlandin_cv.pdf (phone-free web version)
 cv_source/              cesarlandin_cv_web.tex (LaTeX source of the web CV)
 documentation/          reference_websites.txt (design references)
@@ -29,22 +30,27 @@ Then open http://localhost:8000.
 
 ## Editing content
 
-- **Papers:** edit the `<article class="card">` blocks in `index.html`. Each card has a title, authors, status badge, links, and a hidden abstract (the `id` in the abstract `<div>` must match the button's `aria-controls`).
-- **Datasets:** edit the cards in `data.html` (same card structure, with a `card-desc` paragraph).
-- **Bio:** edit the `<section class="intro">` block at the top of `index.html` (affiliation, bio paragraph, contact icons).
+- **Papers:** the paper cards appear on BOTH `index.html` (Home, under "Current Research") and `research.html` (under "Working Papers"), so edit both. Each card has a title, authors, status badge, links, and a hidden abstract (the `id` in the abstract `<div>` must match the button's `aria-controls`). Abstract ids on `research.html` are prefixed `r-` (e.g. `r-abs-procurement`) so they stay unique per page.
+- **Other work:** the placeholder cards under "Other Work" in `research.html` have no abstract toggle; replace their titles, descriptions and the disabled "Paper (coming soon)" pill with real content.
+- **Datasets:** edit the cards in `data.html` (same card structure, with a `card-desc` paragraph). Current cards: Brazilian Randomized Municipality Audits and LLM-Coded Brazilian Municipal Audit Reports (both "Forthcoming", with disabled Documentation/Download pills).
+- **Bio:** edit the `<section class="intro">` block at the top of `index.html` (photo, contact icons, affiliation, bio paragraph).
+- **Nav:** the Home | Research | Data | CV nav is repeated on every page; keep it identical apart from `aria-current="page"` on the current page.
 
 ## Thumbnail hover effect
 
-Set `data-thumb-effect="grayscale"` or `data-thumb-effect="zoom"` on the `<body>` of `index.html` and `data.html`.
+Set `data-thumb-effect` to `grayscale`, `zoom` or `accent` on the `<body>` of `index.html`, `research.html` and `data.html`.
 
-- `grayscale`: thumbnails are grey and turn to colour on hover.
-- `zoom`: thumbnails stay in colour and zoom slightly on hover.
+- `grayscale` (default): the image is grey on a neutral panel and turns to colour, on the card's tint, on hover/focus.
+- `zoom`: the image stays in colour on the card's tint and zooms slightly on hover.
+- `accent`: the image stays in colour; only the panel changes from neutral grey to the card's tint on hover/focus.
 
-To preview either live without editing, add `?thumb=zoom` or `?thumb=grayscale` to the URL (e.g. `http://localhost:8000/?thumb=zoom`). The choice persists while clicking between tabs.
+To preview any of them live without editing, add `?thumb=grayscale`, `?thumb=zoom` or `?thumb=accent` to the URL (e.g. `http://localhost:8000/?thumb=accent`). The choice persists while clicking between tabs.
+
+The thumbnail SVGs have transparent backgrounds; the `.card-thumb` container supplies the background. Each `.card-thumb` carries an inline `style="--thumb-tint:#rrggbb"` (the colour shown on hover, or always in `zoom`). If it is missing, the tint falls back to a neutral grey. When adding a card, pick a light tint that suits the figure. In dark mode the tints stay light on purpose, so the figures remain visible.
 
 ## Replacing the dummy icons
 
-Drop square images (about 250x250 or larger; SVG, PNG or JPG) into `assets/img/papers/` or `assets/img/data/`, then update the `src` of the matching `<img>` in `index.html` or `data.html`.
+Drop square images (about 250x250 or larger; SVG, PNG or JPG) into `assets/img/papers/` or `assets/img/data/`, then update the `src` of the matching `<img>` (and the card's `--thumb-tint`) in `index.html`, `research.html` or `data.html`. Use a transparent background so the tint shows through.
 
 ## Rebuilding the CV
 

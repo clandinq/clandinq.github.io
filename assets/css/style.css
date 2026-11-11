@@ -17,6 +17,7 @@
   --muted: #5a6270;
   --rule: #d9dde3;
   --toggle-bg: #f1f3f6;
+  --thumb-neutral: #eef0f3;
   --accent-soft: rgba(28, 79, 140, 0.08);
   --card-shadow: 0 1px 3px rgba(0, 33, 69, 0.08);
   --font: 'Source Serif 4', Georgia, 'Times New Roman', serif;
@@ -33,6 +34,7 @@
     --muted: #9aa5b3;
     --rule: #2c3644;
     --toggle-bg: #1b2533;
+    --thumb-neutral: #d9dee5;
     --accent-soft: rgba(143, 187, 232, 0.12);
     --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   }
@@ -48,6 +50,7 @@
   --muted: #9aa5b3;
   --rule: #2c3644;
   --toggle-bg: #1b2533;
+  --thumb-neutral: #d9dee5;
   --accent-soft: rgba(143, 187, 232, 0.12);
   --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
@@ -111,6 +114,14 @@ a:hover {
   color: var(--heading);
 }
 
+.subsection-title {
+  margin: 1.75rem 0 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--heading);
+}
+
 .page-lead {
   margin: 0 0 1rem;
   color: var(--muted);
@@ -134,8 +145,9 @@ a:hover {
 }
 
 .site-name {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 600;
+  line-height: 1.2;
   color: var(--heading);
 }
 
@@ -210,24 +222,38 @@ a:hover {
    ========================================================================== */
 .intro {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
   padding: 2rem 0;
   border-bottom: 1px solid var(--rule);
 }
 
-.intro-photo {
+.intro-media {
   flex-shrink: 0;
   width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.intro-photo {
+  display: block;
+  width: 100%;
   height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 20%;
+  object-position: 50% 50%;
   border-radius: 8px;
 }
 
+/* No padding-top: the first line of text lines up with the top of the photo */
 .intro-text {
   min-width: 0;
+}
+
+.intro-text > :first-child {
+  margin-top: 0;
 }
 
 .intro-text p {
@@ -237,6 +263,7 @@ a:hover {
 .affiliation {
   color: var(--muted);
   font-size: 0.95rem;
+  line-height: 1.25;
 }
 
 .contact-icons {
@@ -278,6 +305,14 @@ a:hover {
   border: 1px solid var(--rule);
   border-radius: 6px;
   box-shadow: var(--card-shadow);
+  /* The SVGs are transparent: the container supplies the backdrop. Rest state
+     is neutral; --thumb-tint (set inline per card) is the hover/zoom colour.
+     Two faint radial highlights keep the panel from looking flat. */
+  background-color: var(--thumb-neutral);
+  background-image:
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.55) 0 18%, transparent 19%),
+    radial-gradient(circle at 10% 90%, rgba(0, 0, 0, 0.04) 0 22%, transparent 23%);
+  transition: background-color 0.35s ease;
 }
 
 .card-thumb img {
@@ -397,6 +432,8 @@ a:hover {
 /* ==========================================================================
    6. Thumbnail effects (switch: body[data-thumb-effect])
    ========================================================================== */
+/* grayscale (default): grey image on a neutral panel; colour image on the
+   card's tint on hover/focus */
 body[data-thumb-effect="grayscale"] .card-thumb img {
   filter: grayscale(100%);
   transition: filter 0.35s ease;
@@ -407,12 +444,30 @@ body[data-thumb-effect="grayscale"] .card:focus-within .card-thumb img {
   filter: grayscale(0);
 }
 
+body[data-thumb-effect="grayscale"] .card:hover .card-thumb,
+body[data-thumb-effect="grayscale"] .card:focus-within .card-thumb {
+  background-color: var(--thumb-tint, var(--toggle-bg));
+}
+
+/* zoom: image always in colour on the tint; zooms slightly on hover
+   (.card-thumb already clips overflow) */
+body[data-thumb-effect="zoom"] .card-thumb {
+  background-color: var(--thumb-tint, var(--toggle-bg));
+}
+
 body[data-thumb-effect="zoom"] .card-thumb img {
   transition: transform 0.35s ease;
 }
 
 body[data-thumb-effect="zoom"] .card:hover .card-thumb img {
   transform: scale(1.08);
+}
+
+/* accent: image always in colour; only the panel changes from neutral grey
+   to the card's tint on hover/focus */
+body[data-thumb-effect="accent"] .card:hover .card-thumb,
+body[data-thumb-effect="accent"] .card:focus-within .card-thumb {
+  background-color: var(--thumb-tint, var(--toggle-bg));
 }
 
 
@@ -490,7 +545,7 @@ body[data-thumb-effect="zoom"] .card:hover .card-thumb img {
     gap: 1.25rem;
   }
 
-  .intro-photo {
+  .intro-media {
     align-self: center;
   }
 

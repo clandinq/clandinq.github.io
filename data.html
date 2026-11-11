@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Data | César Landín</title>
-  <meta name="description" content="Datasets and code from the research of César Landín, Ph.D. student in Economics at UBC. Releases are forthcoming.">
+  <meta name="description" content="Datasets and code from the research of César Landín, Ph.D. candidate in Economics at UBC. Releases are forthcoming.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/main.js" defer></script>
 </head>
-<!-- Thumbnail hover effect: set to grayscale or zoom (preview with ?thumb=zoom) -->
+<!-- Thumbnail hover effect: set to grayscale, zoom or accent (preview with ?thumb=zoom) -->
 <body data-thumb-effect="grayscale">
 
   <!-- ==================== Navigation ==================== -->
@@ -24,7 +24,8 @@
       <a class="site-name" href="index.html">César Landín</a>
       <div class="nav-right">
         <nav class="tabs" aria-label="Main">
-          <a href="index.html">Research</a>
+          <a href="index.html">Home</a>
+          <a href="research.html">Research</a>
           <a href="data.html" aria-current="page">Data</a>
           <a href="cv.html">CV</a>
         </nav>
@@ -43,11 +44,11 @@
 
     <!-- PLACEHOLDER dataset cards. Replace with real releases. -->
     <article class="card">
-      <div class="card-thumb"><img src="assets/img/data/audit-reports.svg" alt="" loading="lazy" width="250" height="250"></div>
+      <div class="card-thumb" style="--thumb-tint:#e2f3ea"><img src="assets/img/data/audit-lotteries.svg" alt="" loading="lazy" width="250" height="250"></div>
       <div class="card-body">
-        <h2 class="card-title">LLM-Coded Brazilian Municipal Audit Reports</h2>
+        <h2 class="card-title">Brazilian Randomized Municipality Audits</h2>
         <p class="card-status"><span class="badge">Forthcoming</span></p>
-        <p class="card-desc">Irregularity types, corruption intensity, and implicated firms extracted with a large language model pipeline from more than 2,000 unstructured CGU anti-corruption audit reports.</p>
+        <p class="card-desc">Parsed eligibility lists and selected municipalities for each of the CGU’s randomized anti-corruption audit lotteries (2003–2015).</p>
         <div class="card-links">
           <span class="pill pill--disabled" aria-disabled="true">Documentation</span>
           <span class="pill pill--disabled" aria-disabled="true">Download</span>
@@ -56,11 +57,11 @@
     </article>
 
     <article class="card">
-      <div class="card-thumb"><img src="assets/img/data/procurement-panel.svg" alt="" loading="lazy" width="250" height="250"></div>
+      <div class="card-thumb" style="--thumb-tint:#ede7f6"><img src="assets/img/data/audit-reports.svg" alt="" loading="lazy" width="250" height="250"></div>
       <div class="card-body">
-        <h2 class="card-title">Linked Municipal Procurement Panel</h2>
+        <h2 class="card-title">LLM-Coded Brazilian Municipal Audit Reports</h2>
         <p class="card-status"><span class="badge">Forthcoming</span></p>
-        <p class="card-desc">2.4 million Brazilian municipal tenders (2009–2021) linked to the firm registry and employer–employee records, harmonized at the tender, participant, and municipality level.</p>
+        <p class="card-desc">Irregularity types, corruption intensity, and implicated firms extracted with a large language model pipeline from more than 2,000 unstructured CGU anti-corruption audit reports.</p>
         <div class="card-links">
           <span class="pill pill--disabled" aria-disabled="true">Documentation</span>
           <span class="pill pill--disabled" aria-disabled="true">Download</span>
