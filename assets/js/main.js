@@ -68,4 +68,17 @@
         'thumb=' + thumb + hash);
     });
   }
+
+  /* (d) Email links -------------------------------------------------------
+     The address never appears whole in the HTML, which keeps it away from
+     simple scrapers. Each .js-email carries data-user and data-domain; the
+     mailto: link is built here. Without JS the fallback href (the CV page)
+     still leads to contact details. */
+  var emails = document.querySelectorAll('.js-email');
+  Array.prototype.forEach.call(emails, function (a) {
+    var user = a.getAttribute('data-user');
+    var domain = a.getAttribute('data-domain');
+    if (!user || !domain) return;
+    a.setAttribute('href', 'mailto:' + user + '@' + domain);
+  });
 })();

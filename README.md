@@ -34,6 +34,7 @@ Then open http://localhost:8000.
 - **Other work:** the placeholder cards under "Other Work" in `research.html` have no abstract toggle; replace their titles, descriptions and the disabled "Paper (coming soon)" pill with real content.
 - **Datasets:** edit the cards in `data.html` (same card structure, with a `card-desc` paragraph). Current cards: Brazilian Randomized Municipality Audits and LLM-Coded Brazilian Municipal Audit Reports (both "Forthcoming", with disabled Documentation/Download pills).
 - **Bio:** edit the `<section class="intro">` block at the top of `index.html` (photo, contact icons, affiliation, bio paragraph).
+- **Email link:** the address is never written whole in the HTML, to keep it away from scrapers. The envelope icon is `<a class="js-email" data-user="..." data-domain="...">`, and `assets/js/main.js` builds the `mailto:` link when the page loads. Without JS, the link falls back to `cv.html`. Never add a plain `mailto:` link.
 - **Nav:** the Home | Research | Data | CV nav is repeated on every page; keep it identical apart from `aria-current="page"` on the current page.
 
 ## Thumbnail hover effect
