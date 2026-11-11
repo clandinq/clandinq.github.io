@@ -5,7 +5,7 @@ The static site behind https://clandinq.github.io/. Plain HTML, CSS and JavaScri
 ## File layout
 
 ```
-index.html              Home: intro/bio + current-research paper cards
+index.html              Home: photo, contact icons and bio only
 research.html           Research page: working papers + other work
 data.html               Data page: dataset cards
 cv.html                 CV page: embedded PDF + download button
@@ -30,7 +30,7 @@ Then open http://localhost:8000.
 
 ## Editing content
 
-- **Papers:** the paper cards appear on BOTH `index.html` (Home, under "Current Research") and `research.html` (under "Working Papers"), so edit both. Each card has a title, authors, status badge, links, and a hidden abstract (the `id` in the abstract `<div>` must match the button's `aria-controls`). Abstract ids on `research.html` are prefixed `r-` (e.g. `r-abs-procurement`) so they stay unique per page.
+- **Papers:** edit the cards under "Working Papers" in `research.html`. Each card has a title, authors, status badge, links, and a hidden abstract (the `id` in the abstract `<div>` must match the button's `aria-controls`).
 - **Other work:** the placeholder cards under "Other Work" in `research.html` have no abstract toggle; replace their titles, descriptions and the disabled "Paper (coming soon)" pill with real content.
 - **Datasets:** edit the cards in `data.html` (same card structure, with a `card-desc` paragraph). Current cards: Brazilian Randomized Municipality Audits and LLM-Coded Brazilian Municipal Audit Reports (both "Forthcoming", with disabled Documentation/Download pills).
 - **Bio:** edit the `<section class="intro">` block at the top of `index.html` (photo, contact icons, affiliation, bio paragraph).
@@ -38,7 +38,7 @@ Then open http://localhost:8000.
 
 ## Thumbnail hover effect
 
-Set `data-thumb-effect` to `grayscale`, `zoom` or `accent` on the `<body>` of `index.html`, `research.html` and `data.html`.
+Set `data-thumb-effect` to `grayscale`, `zoom` or `accent` on the `<body>` of `research.html` and `data.html` (the pages with cards).
 
 - `grayscale` (default): the image is grey on a neutral panel and turns to colour, on the card's tint, on hover/focus.
 - `zoom`: the image stays in colour on the card's tint and zooms slightly on hover.
@@ -50,7 +50,7 @@ The thumbnail SVGs have transparent backgrounds; the `.card-thumb` container sup
 
 ## Replacing the dummy icons
 
-Drop square images (about 250x250 or larger; SVG, PNG or JPG) into `assets/img/papers/` or `assets/img/data/`, then update the `src` of the matching `<img>` (and the card's `--thumb-tint`) in `index.html`, `research.html` or `data.html`. Use a transparent background so the tint shows through.
+Drop square images (about 250x250 or larger; SVG, PNG or JPG) into `assets/img/papers/` or `assets/img/data/`, then update the `src` of the matching `<img>` (and the card's `--thumb-tint`) in `research.html` or `data.html`. Use a transparent background so the tint shows through.
 
 ## Rebuilding the CV
 
@@ -74,4 +74,4 @@ Commit and push to `main`. GitHub Pages serves from the root of the `main` branc
 
 **Cache busting:** GitHub Pages lets browsers cache CSS/JS for 10 minutes. Whenever you change
 `assets/css/style.css` or `assets/js/main.js`, bump the `?v=N` suffix on their `<link>`/`<script>` tags
-in all four HTML files (e.g. `sed -i '' 's/?v=3"/?v=4"/g' *.html`), otherwise visitors may see new HTML with old styles.
+in all four HTML files (e.g. `sed -i '' 's/?v=4"/?v=5"/g' *.html`), otherwise visitors may see new HTML with old styles.
