@@ -71,3 +71,7 @@ The public CV must not contain a phone number.
 ## Deploy
 
 Commit and push to `main`. GitHub Pages serves from the root of the `main` branch.
+
+**Cache busting:** GitHub Pages lets browsers cache CSS/JS for 10 minutes. Whenever you change
+`assets/css/style.css` or `assets/js/main.js`, bump the `?v=N` suffix on their `<link>`/`<script>` tags
+in all four HTML files (e.g. `sed -i '' 's/?v=3"/?v=4"/g' *.html`), otherwise visitors may see new HTML with old styles.
