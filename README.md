@@ -74,4 +74,4 @@ Commit and push to `main`. GitHub Pages serves from the root of the `main` branc
 
 **Cache busting:** GitHub Pages lets browsers cache CSS/JS for 10 minutes. Whenever you change
 `assets/css/style.css` or `assets/js/main.js`, bump the `?v=N` suffix on their `<link>`/`<script>` tags
-in all four HTML files (e.g. `sed -i '' 's/?v=5"/?v=6"/g' *.html`), otherwise visitors may see new HTML with old styles.
+in all four HTML files (e.g. `sed -i '' 's/?v=6"/?v=7"/g' *.html`), otherwise visitors may see new HTML with old styles.
