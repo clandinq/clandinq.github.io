@@ -78,6 +78,18 @@ body {
   color: var(--text);
   overflow-wrap: break-word;
   transition: background-color 0.25s ease, color 0.25s ease;
+  /* Sticky footer: the page is a column at least as tall as the window and
+     <main> absorbs the spare height, so the footer sits at the bottom of
+     short pages (e.g. Home) instead of floating mid-screen. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100%;
 }
 
 img {
@@ -258,6 +270,14 @@ a:hover {
 
 .intro-text p {
   margin: 0 0 0.9rem;
+  /* Justified bio; hyphenation (uses <html lang="en">) keeps word spacing even */
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+.intro-text .affiliation {
+  text-align: left;
 }
 
 .affiliation {
@@ -432,7 +452,8 @@ a:hover {
 /* ==========================================================================
    6. Thumbnail effects (switch: body[data-thumb-effect])
    ========================================================================== */
-/* grayscale (default): grey image on a neutral panel; colour image on the
+/* Default is accent (set on each page's <body>). */
+/* grayscale: grey image on a neutral panel; colour image on the
    card's tint on hover/focus */
 body[data-thumb-effect="grayscale"] .card-thumb img {
   filter: grayscale(100%);
@@ -511,11 +532,6 @@ body[data-thumb-effect="accent"] .card:focus-within .card-thumb {
   color: var(--muted);
   font-size: 0.88rem;
   text-align: center;
-}
-
-.site-footer .contact-icons {
-  justify-content: center;
-  margin-bottom: 0.8rem;
 }
 
 .site-footer p {
