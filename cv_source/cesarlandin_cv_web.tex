@@ -56,6 +56,11 @@
 \name{\texorpdfstring{\plaintext{César}}{César}}{\texorpdfstring{\plaintext{Landín}}{Landín}}
 \address{Vancouver, BC}
 \email{clandinq@student.ubc.ca}
+% Web version: the address is shown normally, but text extraction (and copy-paste)
+% gives "clandinq [at] student [dot] ubc [dot] ca", to keep it from scrapers.
+% There is no mailto: link, since a link would put the full address in the PDF.
+\renewcommand*{\emaillink}[2][]{%
+  \BeginAccSupp{method=pdfstringdef,unicode,ActualText={clandinq [at] student [dot] ubc [dot] ca}}#2\EndAccSupp{}}
 \social[linkedin]{cesarlandin}
 
 %------------------------------------------------------------
