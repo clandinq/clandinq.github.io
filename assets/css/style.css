@@ -1,0 +1,527 @@
+/* ==========================================================================
+   style.css - César Landín, academic site
+   Sections: 1 tokens | 2 base | 3 nav | 4 intro | 5 cards | 6 thumb effects
+             7 CV | 8 footer | 9 responsive | 10 reduced motion
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. Design tokens (light default; dark via OS preference or data-theme)
+   ========================================================================== */
+:root {
+  --bg: #ffffff;
+  --text: #1f2328;
+  --heading: #002145;
+  --link: #1c4f8c;
+  --link-hover: #002145;
+  --muted: #5a6270;
+  --rule: #d9dde3;
+  --toggle-bg: #f1f3f6;
+  --accent-soft: rgba(28, 79, 140, 0.08);
+  --card-shadow: 0 1px 3px rgba(0, 33, 69, 0.08);
+  --font: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+/* Dark: follows the OS unless the user has explicitly chosen light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1722;
+    --text: #e2e6eb;
+    --heading: #c9dcf2;
+    --link: #8fbbe8;
+    --link-hover: #c9dcf2;
+    --muted: #9aa5b3;
+    --rule: #2c3644;
+    --toggle-bg: #1b2533;
+    --accent-soft: rgba(143, 187, 232, 0.12);
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Dark: explicit user choice */
+:root[data-theme="dark"] {
+  --bg: #0f1722;
+  --text: #e2e6eb;
+  --heading: #c9dcf2;
+  --link: #8fbbe8;
+  --link-hover: #c9dcf2;
+  --muted: #9aa5b3;
+  --rule: #2c3644;
+  --toggle-bg: #1b2533;
+  --accent-soft: rgba(143, 187, 232, 0.12);
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  overflow-wrap: break-word;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.section-title {
+  margin: 2rem 0 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--heading);
+}
+
+.page-lead {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+
+/* ==========================================================================
+   3. Navigation
+   ========================================================================== */
+.site-nav {
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.site-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.site-name:hover {
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1.4rem;
+}
+
+.tabs a {
+  padding: 0.25rem 0;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+}
+
+.tabs a:hover {
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.tabs a[aria-current="page"] {
+  color: var(--heading);
+  border-bottom-color: var(--heading);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--toggle-bg);
+  color: var(--heading);
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--link);
+}
+
+/* Light shows the moon (switch to dark); dark shows the sun */
+.theme-toggle .fa-sun { display: none; }
+.theme-toggle .fa-moon { display: inline-block; }
+
+:root[data-theme="dark"] .theme-toggle .fa-sun { display: inline-block; }
+:root[data-theme="dark"] .theme-toggle .fa-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .fa-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .fa-moon { display: inline-block; }
+
+
+/* ==========================================================================
+   4. Intro and contact icons
+   ========================================================================== */
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.intro-photo {
+  flex-shrink: 0;
+  width: 180px;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border-radius: 8px;
+}
+
+.intro-text {
+  min-width: 0;
+}
+
+.intro-text p {
+  margin: 0 0 0.9rem;
+}
+
+.affiliation {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.contact-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.contact-icons a {
+  display: inline-block;
+  color: var(--link);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-icons a:hover {
+  color: var(--link-hover);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+
+/* ==========================================================================
+   5. Cards (papers and datasets)
+   ========================================================================== */
+.card {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.card-thumb {
+  flex-shrink: 0;
+  width: 125px;
+  height: 125px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  box-shadow: var(--card-shadow);
+}
+
+.card-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-title {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--heading);
+}
+
+.card-authors {
+  margin: 0 0 0.35rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.card-status {
+  margin: 0 0 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--link);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card-desc {
+  margin: 0 0 0.6rem;
+  font-size: 0.97rem;
+}
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  display: inline-block;
+  margin: 0;
+  padding: 0.2rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--link);
+  font: inherit;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pill:hover {
+  background: var(--link);
+  color: var(--bg);
+  text-decoration: none;
+}
+
+.pill--primary {
+  background: var(--link);
+  color: var(--bg);
+}
+
+.pill--primary:hover {
+  background: var(--link-hover);
+  color: var(--bg);
+}
+
+.pill--disabled,
+.pill--disabled:hover {
+  background: transparent;
+  border: 1px dashed var(--rule);
+  color: var(--muted);
+  cursor: default;
+}
+
+.abstract {
+  margin-top: 0.8rem;
+  padding: 1rem;
+  border-left: 3px solid var(--link);
+  border-radius: 4px;
+  background: var(--accent-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.abstract[hidden] {
+  display: none;
+}
+
+.abstract p {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   6. Thumbnail effects (switch: body[data-thumb-effect])
+   ========================================================================== */
+body[data-thumb-effect="grayscale"] .card-thumb img {
+  filter: grayscale(100%);
+  transition: filter 0.35s ease;
+}
+
+body[data-thumb-effect="grayscale"] .card:hover .card-thumb img,
+body[data-thumb-effect="grayscale"] .card:focus-within .card-thumb img {
+  filter: grayscale(0);
+}
+
+body[data-thumb-effect="zoom"] .card-thumb img {
+  transition: transform 0.35s ease;
+}
+
+body[data-thumb-effect="zoom"] .card:hover .card-thumb img {
+  transform: scale(1.08);
+}
+
+
+/* ==========================================================================
+   7. CV page
+   ========================================================================== */
+.cv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.cv-updated {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.cv-embed {
+  max-width: 100%;
+}
+
+.cv-embed iframe {
+  display: block;
+  width: 100%;
+  height: 85vh;
+  min-height: 600px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+
+/* ==========================================================================
+   8. Footer
+   ========================================================================== */
+.site-footer {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.site-footer .contact-icons {
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   9. Responsive (below 700px)
+   ========================================================================== */
+@media (max-width: 699px) {
+  /* Name on the first line; tabs + toggle on the second */
+  .nav-inner {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+  }
+
+  .nav-right {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+
+  /* Intro stacks, photo centred above the text */
+  .intro {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .intro-photo {
+    align-self: center;
+  }
+
+  .card {
+    gap: 0.9rem;
+  }
+
+  .card-thumb {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cv-embed {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   10. Reduced motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .contact-icons a:hover,
+  body[data-thumb-effect="zoom"] .card:hover .card-thumb img {
+    transform: none !important;
+  }
+}

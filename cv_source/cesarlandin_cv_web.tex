@@ -1,0 +1,208 @@
+%==========================================================
+% WEB VERSION: identical to the full CV except the phone number
+% (\mobile{...} line) has been removed for public posting.
+%==========================================================
+%==========================================================
+% CV - César Landín
+% Compile with pdfLaTeX (in Texpad: Typeset dropdown > Manual > pdfLaTeX).
+% Requires: moderncv, newpx, hfbright, accsupp (all in the full MacTeX).
+%==========================================================
+
+\documentclass[11pt, letterpaper, english, roman]{moderncv}
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+
+%------------------------------------------------------------
+% Encoding and fonts
+%------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage[largesc]{newpxtext}  % Palatino-style body text with true small caps
+\usepackage{accsupp}             % lets small-caps text copy/parse as normal text
+
+% Computer Modern Bright for the contact block. OT1 keeps it in vector
+% fonts (hfbright); under T1 it falls back to blurry bitmap fonts.
+\newenvironment{cmbr}{\fontencoding{OT1}\fontfamily{cmbr}\selectfont}{\par}
+
+% Visible text #1, extracted from the PDF as plain #1 (for ATS parsers).
+\newcommand{\plaintext}[1]{%
+  \BeginAccSupp{method=pdfstringdef,unicode,ActualText={#1}}#1\EndAccSupp{}}
+
+%------------------------------------------------------------
+% Page layout and colours
+%------------------------------------------------------------
+\usepackage[top=1.5cm, bottom=1.5cm, left=2.04cm, right=2.04cm,
+            marginparwidth=0pt, marginparsep=0pt]{geometry}
+\setlength{\parindent}{0pt}
+\colorlet{color1}{black}  % name and section headings
+\colorlet{firstnamecolor}{black}  % moderncv 2.4+ colours first/last name separately
+\colorlet{lastnamecolor}{black}
+
+\AfterPreamble{\hypersetup{
+  pdftitle={César Landín - CV},
+  pdfauthor={César Landín},
+  urlcolor=gray,
+  linkcolor=black,
+  pdfborder={0 0 0}}}
+
+%------------------------------------------------------------
+% Header
+%------------------------------------------------------------
+\renewcommand*{\mobilephonesymbol}{}
+\renewcommand*{\emailsymbol}{}
+\renewcommand*{\namefont}{\fontencoding{T1}\fontfamily{ppl}\selectfont\Huge\scshape\bfseries}
+
+\name{\texorpdfstring{\plaintext{César}}{César}}{\texorpdfstring{\plaintext{Landín}}{Landín}}
+\address{Vancouver, BC}
+\email{clandinq@student.ubc.ca}
+\social[linkedin]{cesarlandin}
+
+%------------------------------------------------------------
+% Section headings: small-caps title followed by a rule to the right margin
+%------------------------------------------------------------
+\newlength{\rulethickness}
+\setlength{\rulethickness}{1pt}
+\setlength{\separatorcolumnwidth}{0.01\textwidth}  % gap between title and rule
+
+\RenewDocumentCommand{\section}{sm}{%
+  \par\phantomsection
+  \noindent\sectionstyle{#2}%
+  \hspace{\separatorcolumnwidth}%
+  \leaders\hrule height \rulethickness\hfill\kern0pt
+  \par}
+
+\newcommand{\sectionf}[1]{%
+  \par\vspace{9pt}%
+  \section{\hspace{-1pt}\fontfamily{ppl}\selectfont\scshape\bfseries
+           \fontsize{13}{15}\selectfont\plaintext{#1}}%
+  \vspace{-\entrygap}\vspace{1pt}}
+
+%------------------------------------------------------------
+% Entries
+%------------------------------------------------------------
+\newlength{\entrygap}               % space before each organization
+\setlength{\entrygap}{5pt}
+
+% \cvcname{Organization}{Location}
+\newcommand{\cvcname}[2]{%
+  \par\vspace{\entrygap}\noindent
+  \textbf{#1}\hfill\textit{\normalsize #2}\par}
+
+% \cvposition{Title}{Dates}{Description}
+\newcommand{\cvposition}[3]{%
+  \par\noindent\textit{#1}\hfill\textit{#2}\par
+  \noindent{\small\ignorespaces #3\par}%
+  \vspace{2pt}}
+
+% \cvshort{Left text}{Right text}: one line, e.g. a degree, award or skill
+\newcommand{\cvshort}[2]{%
+  \par\noindent{#1}\hfill\textit{#2}\par}
+
+%------------------------------------------------------------
+
+\begin{document}
+
+\begin{cmbr}
+\maketitle
+\end{cmbr}
+
+\vspace*{-14pt} % pull the first section up under the header
+
+
+%%%% EDUCATION %%%%
+\sectionf{Education}
+
+% UBC
+\cvcname{The University of British Columbia (UBC)}{Vancouver, BC}
+\cvshort{Ph.D. in Economics (expected June 2028)}{2023--present}
+
+% ITAM
+\cvcname{Instituto Tecnológico Autónomo de México (ITAM)}{Mexico City, Mexico}
+\cvshort{B.A. in Economics and Political Science (dual degree, with Honours)}{2014--2020}
+%\cvshort{B.A. in Political Science (with Honours)}{2014--2020}
+\cvshort{\textit{ExITAM Research Prize (ITAM Alumni Association), Best Thesis in Political Science}}{2025}
+
+%%%% RESEARCH %%%%
+\sectionf{Research}
+
+\par\vspace{\entrygap}
+\cvposition{Procurement Misallocation and Public Service Delivery}{{Job Market Paper, joint with Maria Eliúde}}{
+Estimate how randomized anti-corruption audits change municipal procurement in Brazil with a staggered DiD design, using 2.4M tenders linked to firm registry and employer--employee data. Built an LLM pipeline that extracts irregularity types, corruption intensity, and implicated firms from 2,000+ unstructured audit reports.
+}
+
+%%%% PROFESSIONAL EXPERIENCE %%%%
+\sectionf{Professional Experience}
+
+% UBC
+\cvcname{UBC}{Vancouver, BC}
+\cvposition{Financial Officer, UBC Graduate Student Society}{2025--present}{
+	Manage a \$1.5M+ operating budget. Designed a multi-fund reserve and endowment framework. Drafted investment guidelines, then led the selection and transition to a new investment manager. Automated financial reporting.
+}
+
+\cvposition{Teaching Assistant, Vancouver School of Economics}{2024--present}{
+	Lead review sessions and grade exams for upper-level undergraduate courses with 70+ students.
+
+}
+
+% Northwestern
+% ITAM
+\cvcname{Northwestern University, Kellogg School of Management}{Evanston, IL}
+\cvposition{Empirical Research Fellow, Department of Finance}{2021--2023}{
+Evaluated a randomized controlled trial (RCT) testing the role of behavioural biases in financial technology adoption, processing 20M+ transaction records from 34,000 small firms, employing machine learning methods.
+Used geospatial data processing to estimate the impact of bank bonuses on low-income households' savings.
+}
+
+% IDB
+\cvcname{Inter-American Development Bank (IDB)}{Mexico City, Mexico}
+\cvposition{Economics Consultant, Department of Research}{2020--2021}{
+Analyzed the impact of the COVID-19 pandemic on small and medium-sized firms using financial transaction data on 400,000+ firms in 7 countries; built workflows that automated data updates and reporting in dashboards.
+}
+
+% MSCI
+\cvcname{MSCI Inc.}{Monterrey, Mexico}
+\cvposition{Summer Intern, Equity Analytics}{2019}{
+Developed and deployed new Python and R libraries for factor analytics, used by MSCI clients and the Equity Analytics team. Analyzed market information coverage to support the development of product pricing strategies.
+}
+
+% ITAM
+\cvcname{ITAM}{Mexico City, Mexico}
+%\cvposition{	Research Assistant, Center for Economic Research (CIE)\h}{2019--2020}{
+%\cvposition{Research Assistant, Center for Economic Research (CIE)}{2019--2020}{%
+%%	Performed evaluation of RCT of PROSPERA Digital, a program designed to improve pregnant welfare recipients' access to medical services and birth outcomes through text messages.
+%	Evaluated a health-information RCT, processing large-scale health records and developing a method to merge datasets with incomplete identifiers.
+%}
+
+%\cvposition{Research Assistant, Energy and Natural Resources Center (CIERN)}{2018--2019}{%
+%%	Assembled original database, scraping newspapers to explore how energy projects can increase the risk of social conflict. Prepared literature review and context sections for paper.
+%	Assembled an original database by scraping and processing thousands of unstructured newspaper articles to model the relationship between energy projects and conflict risk.
+%}
+\cvposition{Research Assistant, Center for Economic Research and Energy and Natural Resources Center}{2018--2020}{
+	Evaluated a health-information RCT, developing methods for linking large-scale health records with incomplete identifiers; scraped and coded 1,000+ newspaper articles to model the effect of energy projects on conflict risk.
+}
+
+% CEEY
+\cvcname{Centro de Estudios Espinosa Yglesias (CEEY)}{Mexico City, Mexico}
+\cvposition{Research Assistant, Social Development with Equity Department}{2018--2019}{
+%Analyzed long-run income mobility, automating production of a report still published quarterly. Estimated educational mobility of welfare recipients for the Ministry of Social Development.
+%Automated quarterly report production using R and Stata, built regression and panel-data models to estimate long-run intergenerational mobility of income.
+Automated the analysis and production of a quarterly report on long-run intergenerational income mobility.
+}
+%\vspace{5pt}
+
+%%%% EXTRACURRICULAR %%%%
+\sectionf{Skills and Additional Information} % and extracurricular activities
+\vspace{\entrygap}
+
+\cvshort{\textbf{Methods}: Difference-in-Differences, IV, RDD, RCTs, Causal ML, Time Series, Text as Data (LLM extraction).}{}
+
+\cvshort{\textbf{Programming}: Python, R, Stata, Julia, 
+MATLAB, Git, \LaTeX, MS Excel, LLM APIs, agentic coding tools.}{}
+
+\cvshort{\textbf{Languages}: Spanish (native), English (fluent), Mandarin Chinese (basic).}{}
+
+\cvshort{\textbf{Interests:} Running, cycling, skiing, salsa, and Latin American literature.}{}
+
+%\cvshort{\textbf{Citizenship:} Mexican}{}
+
+\end{document}

@@ -1,0 +1,27 @@
+Reference websites for the professional website (design inspiration)
+
+Department references
+---------------------
+https://prernakundu.github.io/ - department reference
+https://uyseoklee.github.io/ - department reference
+https://smelomartin.github.io/ - department reference
+https://xiomarap.github.io/ - department reference
+
+Borrowed ideas
+--------------
+https://carlasrebot.github.io/
+  Borrowed: icon-only contact links (Font Awesome + Academicons) in the accent
+  colour, changing colour on hover; top-nav + photo/bio intro layout.
+
+https://angelespinozae.github.io/
+  Borrowed: paper cards with a square thumbnail on the left, title/authors/status,
+  abstract toggle; the thumbnail zoom-on-hover effect.
+
+https://fnsepulveda.github.io/#research
+  Borrowed: colours (UBC navy palette, light + dark) and font (Source Serif 4);
+  dark-mode toggle.
+
+https://campuspress.yale.edu/pascualrestrepo/work-in-progress/
+  Borrowed: illustrative icons/images for each paper.
+
+Decision: no sticky sidebar (unlike fnsepulveda); top nav instead.
